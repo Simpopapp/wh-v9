@@ -259,7 +259,9 @@ async def flow_scan(context, errors: list[str]) -> None:
                     """
                     () => axe.run(document, {
                       runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] }
-                    }).then(r => r.violations.map(v => v.id + ':' + v.nodes.length).join(','))
+                    }).then(r => r.violations.map(v =>
+                      v.id + ':' + v.nodes.length + ':' + (v.nodes[0] ? v.nodes[0].target.join(' ') + ' «' + (v.nodes[0].html || '').slice(0, 160) + '»' : '')
+                    ).join(' | '))
                     """
                 )
                 expect(f"scan {route}: axe 0 violações", not result, result or "")
