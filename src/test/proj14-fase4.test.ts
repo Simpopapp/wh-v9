@@ -23,8 +23,18 @@ function store(): VocabStore {
 describe("filterVocab — busca cobre sentidos acumulados (D14-4a)", () => {
   it("acha o sentido anterior acumulado, não só o par exibido", () => {
     let s = store();
-    s = saveVocabWord(s, { word: "bank", literal: "banco financeiro", ts: TS, source: SOURCE_READ });
-    s = saveVocabWord(s, { word: "bank", literal: "orla do rio", ts: TS + 1000, source: SOURCE_READ });
+    s = saveVocabWord(s, {
+      word: "bank",
+      literal: "banco financeiro",
+      ts: TS,
+      source: SOURCE_READ,
+    });
+    s = saveVocabWord(s, {
+      word: "bank",
+      literal: "orla do rio",
+      ts: TS + 1000,
+      source: SOURCE_READ,
+    });
     // "banco financeiro" virou sentido acumulado — a busca deve encontrá-lo
     const hits = filterVocab(flattenVocab(s), { query: "banco financeiro" });
     expect(hits).toHaveLength(1);
@@ -59,7 +69,12 @@ describe("originType persistido (D14-4c)", () => {
   it("grava a origem da 1ª tradução e mantém após re-traduções", () => {
     let s = store();
     s = saveVocabWord(s, { word: "resilient", literal: "resiliente", ts: TS, source: SOURCE_READ });
-    s = saveVocabWord(s, { word: "resilient", literal: "resiliente", ts: TS + 1, source: SOURCE_WRITE });
+    s = saveVocabWord(s, {
+      word: "resilient",
+      literal: "resiliente",
+      ts: TS + 1,
+      source: SOURCE_WRITE,
+    });
     const item = flattenVocab(s)[0]!;
     expect(item.originType).toBe("read_aloud");
     // fontes vivas já mesclaram as duas; a origem persistida não muda
@@ -80,7 +95,10 @@ describe("originType persistido (D14-4c)", () => {
     };
     // união do item: fontes vivas + origem persistida
     const types = [
-      ...new Set([...pruned.sources.map((x) => x.type), ...(pruned.originType ? [pruned.originType] : [])]),
+      ...new Set([
+        ...pruned.sources.map((x) => x.type),
+        ...(pruned.originType ? [pruned.originType] : []),
+      ]),
     ];
     expect(types).toContain("read_aloud");
     expect(sectionOfType("read_aloud")).toBe("speaking");

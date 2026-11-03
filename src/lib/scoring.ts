@@ -272,7 +272,6 @@ export function speechNextStep(g: GradeResult): string {
     return `Regrave em blocos curtos: ${g.pauses} pausas longas quebraram a fluência.`;
   if (g.wpm < 120)
     return `Ritmo ${g.wpm} ppm — leia em frases completas para entrar na faixa de 120–160 ppm.`;
-  if (g.wpm > 160)
-    return `Ritmo ${g.wpm} ppm — desacelere levemente: a faixa ideal é 120–160 ppm.`;
+  if (g.wpm > 160) return `Ritmo ${g.wpm} ppm — desacelere levemente: a faixa ideal é 120–160 ppm.`;
   return "Mantenha esse ritmo — repita questões do mesmo tipo para fixar o padrão.";
 }

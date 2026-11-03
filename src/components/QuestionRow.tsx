@@ -58,7 +58,8 @@ export function statusOf(
   return {
     label: `melhor ${stat.bestContent}%${due}`,
     dot: best >= 70 ? "bg-warning" : "bg-destructive",
-    pill: best >= 70 ? "bg-warning/10 text-warning-foreground" : "bg-destructive/10 text-destructive",
+    pill:
+      best >= 70 ? "bg-warning/10 text-warning-foreground" : "bg-destructive/10 text-destructive",
   };
 }
 
