@@ -134,7 +134,7 @@ async def flow_exam_partial(page: Page, errors: list[str]) -> None:
     errors.clear()
     await page.goto(f"{BASE}/exam", wait_until="domcontentloaded")
     await page.wait_for_timeout(900)
-    writing = page.get_by_role("button", name=re.compile("^Writing$", re.I)).first
+    writing = page.get_by_role("button", name=re.compile("Writing", re.I)).first
     await writing.scroll_into_view_if_needed()
     await writing.click()
     await page.wait_for_timeout(700)
@@ -175,7 +175,7 @@ async def flow_exam_partial(page: Page, errors: list[str]) -> None:
     # Limpeza: descarta o draft para não poluir o preview do utilizador.
     await page.goto(f"{BASE}/exam", wait_until="domcontentloaded")
     await page.wait_for_timeout(900)
-    discard = page.get_by_role("button", name=re.compile("^Speaking$", re.I)).first
+    discard = page.get_by_role("button", name=re.compile("Speaking", re.I)).first
     if await discard.count():
         await discard.scroll_into_view_if_needed()
         await discard.click()
