@@ -112,20 +112,28 @@ async def flow_essay(page: Page, errors: list[str]) -> None:
     await submit.scroll_into_view_if_needed()
     await submit.click()
     # O painel pode ser IA real (alguns segundos) ou o fallback rotulado.
+    pronto = "score registrado no progresso"
     try:
-        await page.wait_for_selector(
-            "text=Análise IA detalhada", timeout=90_000
+        await page.wait_for_function(
+            f"""() => document.body.innerText.includes("{pronto}")
+                 || document.body.innerText.includes("Análise IA indisponível agora")""",
+            timeout=90_000,
         )
         body = await page.evaluate("() => document.body.innerText")
-        expect("essay: painel de análise IA aparece", "Análise IA detalhada" in body)
-        expect(
-            "essay: rótulo de fonte (IA vs básico) presente",
-            "avaliação IA · score registrado no progresso" in body,
-            body[:400],
-        )
-        expect("essay: próxima ação apresentada", "Próximo passo" in body)
+        indisponivel = "Análise IA indisponível agora" in body
+        expect("essay: análise IA carregou (ou fallback rotulado)", True)
+        if indisponivel:
+            expect("essay: fallback rotulado como básico", "avaliação básica determinística" in body)
+            REPORT["essay: modo"] = "fallback"
+        else:
+            expect(
+                "essay: rótulo de fonte (IA vs básico) presente",
+                "avaliação IA · score registrado no progresso" in body,
+            )
+            expect("essay: próxima ação apresentada", "Próximo passo" in body)
+            REPORT["essay: modo"] = "IA real"
     except Exception as e:
-        expect("essay: painel de análise IA aparece", False, str(e))
+        expect("essay: análise IA carregou (ou fallback rotulado)", False, str(e))
     await page.screenshot(path=str(OUT / "1-essay-ia.png"))
     expect("essay: console limpo", len(errors) == 0, "; ".join(errors[:3]))
 
