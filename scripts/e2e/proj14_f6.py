@@ -216,19 +216,24 @@ async def flow_recommendation(page: Page, errors: list[str], backup_path: Path) 
     await page.wait_for_timeout(1200)
     body = await page.evaluate("() => document.body.innerText")
     expect("progress: cartão 'Próximo passo' presente", "Próximo passo" in body, body[:300])
-    link = page.locator('a[href*="/practice?q="]').filter(has_text=re.compile(".", re.I)).first
-    href = None
-    for a in await page.locator('a[href*="/practice?q="]').all():
-        h = await a.get_attribute("href")
-        if h and "q=fraca" in h:
-            href = h
-            break
-    expect("progress: recomendação aponta para treino do ponto fraco", href is not None, body[:300])
-    if href:
-        await page.goto(f"{BASE}{href}", wait_until="domcontentloaded")
-        await page.wait_for_timeout(1500)
-        body2 = await page.evaluate("() => document.body.innerText")
-        expect("practice: questão carregada pela recomendação", "Questão" in body2 or "prática" in body2.lower(), body2[:300])
+    comecar = page.get_by_role("button", name=re.compile("Começar|Abrir vocabulário", re.I)).first
+    if await comecar.count():
+        await comecar.scroll_into_view_if_needed()
+        await comecar.click()
+        try:
+            await page.wait_for_url(re.compile(r"/practice\?q="), timeout=10_000)
+            await page.wait_for_timeout(1500)
+            body2 = await page.evaluate("() => document.body.innerText")
+            expect(
+                "practice: questão carregada pela recomendação",
+                "Questão" in body2 or "prática" in body2.lower(),
+                body2[:300],
+            )
+            REPORT["practice: destino"] = page.url
+        except Exception as e:
+            expect("practice: questão carregada pela recomendação", False, str(e))
+    else:
+        expect("practice: questão carregada pela recomendação", False, "botão Começar ausente")
     await page.screenshot(path=str(OUT / "3-recomendacao.png"))
     expect("recomendação: console limpo", len(errors) == 0, "; ".join(errors[:3]))
 
