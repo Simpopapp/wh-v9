@@ -21,6 +21,7 @@
 import asyncio
 import json
 import re
+import time
 import sys
 from pathlib import Path
 
@@ -77,7 +78,7 @@ ESSAY = (
 
 
 def backup_payload() -> bytes:
-    now = 1_700_000_000_000
+    now = int(time.time() * 1000)  # tentativas recentes: a recomendação ignora datas antigas
     attempts = [
         {
             "qid": "ra-0001",
