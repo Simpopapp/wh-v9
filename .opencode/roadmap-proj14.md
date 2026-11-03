@@ -49,8 +49,8 @@ entre si (após F0); F6 fecha. Execução: gates da seção 19 do Plan.md por fa
 - Gates: vitest 584/584 · tsgo OK · build OK · lint 0 (importo do helper corrigido para @/lib/plus/vocab)
 
 ## Fase 6 · Fechamento AAA
-- [ ] D14-6a E2E estendido (essay IA, retomada parcial, recomendação→treino)
-- [ ] D14-6b Varredura de consistência final (11 rotas, rótulos honestos)
-- [ ] D14-6c Gates completos (vitest 100% · tsgo · build · lint 0)
-- [ ] D14-6d AGENTS.md + aviso ao monitor quando disponível
-- Gates: todos os anteriores + varredura final verde
+- [x] D14-6a E2E estendido (essay IA, retomada parcial, recomendação→treino) — `scripts/e2e/proj14_f6.py`, 45/45 ok
+- [x] D14-6b Varredura de consistência final (11 rotas, rótulos honestos) — 390×844 overflow 0 · axe 0 · console limpo; token `--warning-ink` (D14-6e)
+- [x] D14-6c Gates completos (vitest 100% · tsgo · build · lint 0) — vitest 584/584 · build com precache 122 assets
+- [x] D14-6d AGENTS.md + aviso ao monitor quando disponível — AGENTS.md raiz atualizado; `.opencode/monitor-notice-proj14.md` pendente (monitor indisponível)
+- Gates: todos os anteriores + varredura final verde — E2E 45/45 · vitest 584/584 · tsgo · lint 0 · build OK
