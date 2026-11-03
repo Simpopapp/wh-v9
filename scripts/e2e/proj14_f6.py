@@ -81,7 +81,7 @@ def backup_payload() -> bytes:
     now = int(time.time() * 1000)  # tentativas recentes: a recomendação ignora datas antigas
     attempts = [
         {
-            "qid": "ra-0001",
+            "qid": "pte-ra-01ef7205",
             "ts": now + i,
             "taskType": "read_aloud",
             "mode": "manual",
