@@ -315,7 +315,7 @@ function ProgressPage() {
                     targetVerdict(overall, app.settings.targetScore).tone === "on"
                       ? "bg-success/10 text-success"
                       : targetVerdict(overall, app.settings.targetScore).tone === "near"
-                        ? "bg-warning/10 text-warning"
+                        ? "bg-warning/10 text-warning-ink"
                         : "bg-destructive/10 text-destructive",
                   )}
                 >
