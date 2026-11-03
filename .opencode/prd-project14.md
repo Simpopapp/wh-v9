@@ -358,3 +358,19 @@ verdes e evidência real.
   A2 futuro atualizado para v9. Gates: vitest 584/584 · tsgo · build · lint 0 ·
   Playwright (retomada + autoenvio + resumo por causa).
 - **Correção F4**: importo de `vocabStudyIncludedDue` corrigido para `@/lib/plus/vocab`.
+
+- **D14-6e (F6)**: selos âmbar sobre `bg-warning/10` migraram para o token novo
+  `--warning-ink` (`src/styles.css`, light+dark) — `text-warning` nesse fundo
+  falha contraste AA (axe: color-contrast no chip "Quase no alvo"). Exceções de
+  cor fora do design system documentadas: `error-page.ts` (documento standalone)
+  e assets SVG de dados.
+- **D14-6f (F6)**: E2E versionado da F6 em `scripts/e2e/proj14_f6.py` (45
+  verificações, saída JSON, exit 1 em falha): essay com IA real e fallback
+  rotulado, retomada de Simulado Writing com rascunho parcial restaurado,
+  recomendação "Próximo passo" → prática do ponto fraco, varredura 390×844 nas
+  11 rotas (overflow 0 · console limpo · axe 0). Última execução: 45/45 ok.
+- **Evidência E2E (F6)**: essay IA real confirmado em execução anterior
+  (painel "Análise IA detalhada · avaliação IA · score registrado no progresso",
+  "Próximo passo"); execução final usou o fallback rotulado ("Análise IA
+  indisponível agora · avaliação básica determinística") — ambos os caminhos
+  cobertos pelo script.
