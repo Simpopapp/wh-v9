@@ -254,7 +254,7 @@ function ProgressPage() {
                               r.level === "Pronto"
                                 ? "bg-success/10 text-success"
                                 : r.level === "Quase pronto"
-                                  ? "bg-warning/10 text-warning"
+                                  ? "bg-warning/10 text-warning-ink"
                                   : "bg-secondary text-muted-foreground",
                             )}
                           >
