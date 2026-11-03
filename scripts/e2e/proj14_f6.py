@@ -108,7 +108,7 @@ async def flow_essay(page: Page, errors: list[str]) -> None:
     await page.wait_for_timeout(1200)
     box = page.locator("textarea").first
     await box.fill(ESSAY)
-    submit = page.get_by_role("button", name=re.compile("Submeter|Enviar|Submit", re.I)).first
+    submit = page.get_by_role("button", name=re.compile("Corrigir", re.I)).first
     await submit.scroll_into_view_if_needed()
     await submit.click()
     # O painel pode ser IA real (alguns segundos) ou o fallback rotulado.
