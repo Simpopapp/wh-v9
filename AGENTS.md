@@ -43,3 +43,4 @@ Can you help me with the following actions:
 
 ## Verificação e Qualidade
 - Gates obrigatórios por fase: vitest (`bunx vitest run`) · tsgo limpo · `bun run build` · lint 0 erros · Playwright quando a fase toca UI (console limpo, axe 0 violações nas rotas tocadas, 390×844 sem overflow).
+- E2E versionados vivem em `scripts/e2e/` e rodam contra o dev server: `fluxos_criticos.py` (projeto 13) e `proj14_f6.py` (projeto 14 — essay com IA real/fallback, retomada de simulado com rascunho parcial, recomendação→treino, varredura 390×844 nas 11 rotas). Saída JSON no stdout; qualquer falha = exit 1.
