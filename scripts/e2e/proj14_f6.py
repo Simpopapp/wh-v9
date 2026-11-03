@@ -89,7 +89,7 @@ def backup_payload() -> bytes:
             "wpm": None,
             "durationMs": 1000,
         }
-        for i in range(2)
+        for i in range(3)
     ]
     return json.dumps(
         {
