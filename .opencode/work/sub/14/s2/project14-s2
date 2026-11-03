@@ -1,0 +1,22 @@
+# Project 14 · Subagente s2 — Pacote F2 "Feedback acionável"
+
+Recorte dos pilares centrais (project14 · prd-project14 · roadmap-proj14, fases F2).
+O agente principal detém a implementação e os gates; este pacote define o
+diagnóstico profundo (subagente read-only) que ancora a implementação de F2.
+
+## O quê (do plano central, itens D14-2a..2f)
+- D14-2a Comparação de períodos honesta: sem datas futuras, n>=3 por janela.
+- D14-2b n + aviso de confiança junto a cada score de seção/tópico.
+- D14-2c nextAction.ts puro + recomendação primária em /progress e Home.
+- D14-2d Resumo de sessão: pedidos vs fila; motivo de skip persistido; retomada.
+- D14-2e QuestionRow: cor e estado do mesmo critério (rowState puro).
+- D14-2f ScorePanel com próxima ação concreta.
+
+## Por quê
+Progresso/session/score mostram números sem dizer "o que faço agora"; amostras
+pequenas têm a mesma autoridade de amostras grandes; a comparação conta datas
+futuras (achados A5–A11 da auditoria central).
+
+## Entregável do pacote (subagente read-only)
+Diagnóstico com arquivo:linha + plano de mudança por item D14-2a..2f, listo
+para o agente principal implementar. O subagente NÃO edita código.

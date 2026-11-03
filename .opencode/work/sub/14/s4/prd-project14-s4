@@ -1,0 +1,23 @@
+# PRD — Subagente s4 (F4 · Vocabulário coerente)
+
+Fontes: prd-project14 §2.4 (A18–A20), §3.4, §4-F4. Constraints: mutadores
+públicos em `src/lib/storage.ts`, funções puras em `src/lib/plus/vocab.ts`,
+limpeza total = `clearVocabAll`; page width 4xl; 390×844 sem overflow.
+
+## Escopo do diagnóstico
+1. **D14-4a** `src/lib/plus/vocab.ts` (~658–687): como a busca indexa hoje
+   (campos cobertos), onde os sentidos acumulados vivem no tipo; propor
+   extensão da busca (função pura) + nome do teste a criar (vitest, próximo
+   dos testes existentes de vocab).
+2. **D14-4b** `src/routes/vocabulary.tsx` (~270–271): como a fila limitada é
+   montada, onde "Revisar hoje" é rotulado; propor contagem de vencidos
+   incluídos no rótulo (dizer "N vencidos de M") sem duplicar lógica.
+3. **D14-4c** vocab.ts (~55–66) + filtro de seção em vocabulary.tsx: origem
+   registrada no item vs lista viva de fontes; propor derivação persistida
+   (do campo do item) e migração/compat se necessária (SEM nova versão do
+   AppState se o campo já existir).
+
+## Critérios de aceite do relatório
+- file:line por item, mudança proposta, testes nomeados, impacto em overflow
+  mobile (rótulos novos).
+- Máx. ~50 linhas, sem editar código.

@@ -1,0 +1,15 @@
+# Roadmap — Subagente s2 (F2)
+
+## Fase s2-1 · Diagnóstico read-only
+- [ ] Mapear progress-analytics.ts, progress-overview.ts, progress.tsx (A5–A7)
+- [ ] Mapear session.ts/session.tsx (A8–A9) e contrato de resumo atual
+- [ ] Mapear QuestionRow.tsx (A10), ScorePanel.tsx (A11), Home, rotas de treino
+- [ ] Contrato nextAction.ts + pontos de ligação "recomendação → treino"
+- Gates: relatório com file:line por item, sem edição de código
+
+## Fase s2-2 · Síntese para implementação
+- [ ] Ordem de implementação proposta (puros → UI → testes) e riscos
+- Gates: cada item D14-2a..2f com mudança + teste nomeado
+
+(Agente principal executa F2 após o relatório; gates de execução ficam no
+roadmap central — vitest · tsgo · build · lint · axe · 390×844.)

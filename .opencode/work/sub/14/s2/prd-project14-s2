@@ -1,0 +1,37 @@
+# PRD — Subagente s2 (F2 · Feedback acionável)
+
+Fontes: prd-project14 §2.2 (A5–A11), §3.2, §4-F2. Projeto: Studie Plus
+(TanStack Start + React 19, store AppState com useSyncExternalStore, testes
+vitest em src/**, gates: vitest 100% · tsgo · build · lint 0 · axe 0 · 390×844).
+
+## Escopo do diagnóstico (o COMO deste pacote)
+1. **D14-2a** `src/lib/progress-analytics.ts`: mapear as janelas de comparação
+   (linhas ~24–39), como as datas são filtradas hoje, onde "futuro" entra, que
+   campos o retorno expõe e quem consome (progress.tsx e Home). Propor:
+   filtro `date <= hoje`, exigência n>=3 por janela, estado "amostra
+   insuficiente" no tipo de retorno.
+2. **D14-2b** `src/lib/progress-overview.ts` + `src/routes/progress.tsx`: onde
+   n já é calculado (~36–47), onde os scores de seção/tópico são renderizados
+   (~171–180, 410–746); propor bloco "n tentativas" + aviso <10 no próprio
+   bloco, sem duplicar contagem.
+3. **D14-2c** desenhar contrato do novo `src/lib/nextAction.ts` (puro, sem
+   imports de React): input = overview/attempt data existentes; output = 1
+   recomendação primária {seção, tipo, contagem sugerida, qids fracos, motivo}.
+   Consumidores: /progress e Home (`src/routes/index.tsx`). Identificar como
+   ligar a recomendação ao início de treino (rota de sessão existente).
+4. **D14-2d** `src/lib/session.ts` (~473–492 dueShort/freshShort, ~535–555
+   skip) + `src/routes/session.tsx` (~429–430): onde o resumo é construído,
+   como persistir motivo do skip no draft, como expor "pedidos vs na fila" por
+   tipo e a ação de retomar pulados.
+5. **D14-2e** `src/components/QuestionRow.tsx` (~40–61): estado vs cor hoje;
+   propor `rowState()` puro (última nota + limiar + vencimento) e o arquivo de
+   teste vitest a criar.
+6. **D14-2f** `src/components/ScorePanel.tsx` (~38–63): onde injetar próxima
+   ação concreta (reaproveitar nextAction) para qualquer score exibido.
+
+## Critérios de aceite do relatório
+- Cada item D14-2a..2f com: comportamento atual (file:line), mudança proposta
+  concreta, arquivos a tocar, testes novos a criar (nome do arquivo).
+- Sinalizar colisões com F3/F4 (examDraft, vocab) — nenhuma edição fora do
+  recorte.
+- Máx. ~80 linhas, citações `arquivo:linha`.

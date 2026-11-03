@@ -1,0 +1,33 @@
+# PRD — Subagente s3 (F3 · Simulado sem perdas silenciosas)
+
+Fontes: prd-project14 §2.3 (A12–A17), §3.3, §4-F3. Constraints: política oral
+ÚNICA em `src/lib/pte/oralPolicy.ts` (nunca duplicar ASR); estado do simulado
+em `examDraft` no AppState; merge de backup idempotente (`src/lib/backup.ts`,
+id determinístico do Attempt); migração v8 = só campo novo.
+
+## Escopo do diagnóstico
+1. **D14-3a** `src/components/exam/ExamRunner.tsx` (~418, 1041–1043): como o
+   draft é salvo hoje (por questão concluída?), onde o widget em curso guarda
+   a resposta em memória. Propor: campo `partial` no examDraft (forma do valor
+   por tipo de widget), ponto de autosave (debounce? onChange?), restauração
+   por widget. Listar os widgets e seus arquivos (MCQ/FIB/hiw/speaking/writing
+   e os de listening/reading). Versão do AppState e migração: localizar
+   `src/lib/store.ts` (ou equivalente) e a migração v7 → propor v8.
+2. **D14-3b** ExamRunner (~1111–1130): tick de 500 ms, submit por tempo; propor
+   estado dedicado "tempo encerrado" (renderização própria + aviso de envio
+   automático) que não dependa do tick.
+3. **D14-3c** ExamRunner (~1258–1270) + `oralPolicy.ts` (~38–80): quais causas
+   a política já distingue; como propagar contagem por causa até o resumo
+   ("falha técnica / vazio / tempo / não avaliável").
+4. **D14-3d** `src/routes/exam.tsx` (~381–480): rótulo atual do teste de micro;
+   propor texto honesto (valida acesso, não ASR) + consequência de oral sem
+   transcrição, coerente com a política oral.
+5. **D14-3e** Revisão pós-exame (~1204–1209, 1002–1004): como cada widget
+   renderiza resposta/referência; propor formato uniforme (escolha marcada
+   para MCQ/FIB/hiw; texto vs referência; vazias "—" mas contadas).
+
+## Critérios de aceite do relatório
+- file:line por item, mudança proposta, arquivos a tocar, testes novos
+  (incl. teste de retomada com rascunho pré-submissão e E2E reload).
+- Riscos de regressão no simulado retomável (projeto 13) e no merge de backup.
+- Máx. ~80 linhas, sem editar código.

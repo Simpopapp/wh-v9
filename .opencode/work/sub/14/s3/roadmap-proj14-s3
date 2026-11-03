@@ -1,0 +1,13 @@
+# Roadmap — Subagente s3 (F3)
+
+## Fase s3-1 · Diagnóstico read-only
+- [ ] Mapear autosave/restauração do draft e widgets (A12)
+- [ ] Mapear fim de tempo e estado de submissão (A13)
+- [ ] Mapear causas de "não avaliadas" e política oral (A14)
+- [ ] Mapear teste de microfone (A15) e revisão (A16)
+- [ ] Propor migração v8 (só campo novo) e riscos ao merge idempotente
+- Gates: relatório com file:line por item, sem edição de código
+
+## Fase s3-2 · Síntese para implementação
+- [ ] Ordem proposta (migração → autosave → estados/resumo → rótulos → revisão)
+- Gates: cada item D14-3a..3e com mudança + teste nomeado

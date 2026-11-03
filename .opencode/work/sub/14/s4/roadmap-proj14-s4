@@ -1,0 +1,11 @@
+# Roadmap — Subagente s4 (F4)
+
+## Fase s4-1 · Diagnóstico read-only
+- [ ] Mapear busca em vocab.ts (A18) e tipo dos sentidos acumulados
+- [ ] Mapear fila limitada + rótulo em vocabulary.tsx (A19)
+- [ ] Mapear filtro de seção/origem (A20) e campo persistido do item
+- Gates: relatório com file:line por item, sem edição de código
+
+## Fase s4-2 · Síntese para implementação
+- [ ] Mudanças + testes nomeados por item D14-4a..4c
+- Gates: relatório fecha com ordem de implementação

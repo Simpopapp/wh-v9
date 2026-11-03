@@ -1,0 +1,17 @@
+# Project 14 · Subagente s3 — Pacote F3 "Simulado sem perdas silenciosas"
+
+Recorte dos pilares centrais (F3). O agente principal implementa; este pacote
+é o diagnóstico read-only que ancora F3.
+
+## O quê (D14-3a..3e)
+- D14-3a Autosave parcial por qid (migração AppState v8, campo examDraft.partial)
+  + restauração nos widgets MCQ/FIB/hiw/speaking/writing.
+- D14-3b Estado "tempo encerrado" explícito com aviso de envio automático.
+- D14-3c "Não avaliadas" por causa (contagem da política oral propagada).
+- D14-3d Rótulo honesto do teste de microfone + consequência de oral sem ASR.
+- D14-3e Revisão com resposta/referência coerentes em todos os widgets.
+
+## Por quê
+Reload em meio à questão perde o rascunho (A12); o fim do tempo não é comunicado
+na hora (A13); "não avaliadas" agrupa causas diferentes (A14); o teste de micro
+valida acesso, não ASR (A15); a revisão varia por widget (A16).

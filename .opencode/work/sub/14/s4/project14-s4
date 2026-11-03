@@ -1,0 +1,14 @@
+# Project 14 · Subagente s4 — Pacote F4 "Vocabulário coerente"
+
+Recorte dos pilares centrais (F4). O agente principal implementa; este pacote
+é o diagnóstico read-only que ancora F4.
+
+## O quê (D14-4a..4c)
+- D14-4a Busca cobre sentidos acumulados (função pura em vocab.ts + teste).
+- D14-4b Fila limitada rotula vencidos incluídos ("Revisar hoje — N vencidos de M").
+- D14-4c Filtro de seção usa origem persistida no item, não a lista viva de
+  fontes (teto de 6 retidas).
+
+## Por quê
+Busca não acha sentidos acumulados (A18); rótulo da fila esconde não-vencidos
+(A19); origem antiga desaparece do filtro (A20).
